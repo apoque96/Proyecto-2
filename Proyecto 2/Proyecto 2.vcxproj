@@ -141,6 +141,11 @@
     <ClInclude Include="Proveedor.h" />
     <ClInclude Include="Sistema.h" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="main.resx">
+      <DependentUpon>main.h</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

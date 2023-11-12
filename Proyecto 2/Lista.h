@@ -116,12 +116,12 @@ public:
 		return current;
 	}
 
-	//Obtiene el nodo con el nombre del medicamento dado
+	//Obtiene el nodo a partir de su id
 	//Nota: solo utilizar con la lista de inventario
-	Node<T>^ GetMedicamento(System::String^ nombre) {
+	Node<T>^ GetMedicamento(int id) {
 		Node<T>^ current = head;
 		while (current) {
-			if (!System::String::Compare(nombre, current->val->getNombre())) return current;
+			if (id == current->val->getNumRegistro()) return current;
 			current = current->next;
 		}
 		return nullptr;

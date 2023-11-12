@@ -433,6 +433,7 @@ namespace CRUDFarmacia {
 			this->btn_precio->TabIndex = 6;
 			this->btn_precio->Text = L"Precio más alto";
 			this->btn_precio->UseVisualStyleBackColor = true;
+			this->btn_precio->Click += gcnew System::EventHandler(this, &main::btn_precio_Click);
 			// 
 			// btn_buscar
 			// 
@@ -964,46 +965,48 @@ namespace CRUDFarmacia {
 		void actualizar();
 
 		//Llena el dataGridView con los 4 proveedores
-	private: System::Void main_Load(System::Object^ sender, System::EventArgs^ e);
+		private: System::Void main_Load(System::Object^ sender, System::EventArgs^ e);
 #pragma region Botones
-		   //Agrega el inventario de un medicamento
-	private: System::Void btn_agregar_Click(System::Object^ sender, System::EventArgs^ e);
-		   //Muestra el panel de los proveedores
-	private: System::Void btn_proveedores_Click(System::Object^ sender, System::EventArgs^ e);
-		   //Cierra el panel de los proveedores
-	private: System::Void btn_cerrar_Click(System::Object^ sender, System::EventArgs^ e);
-		   //Selecciona la categoria "Venta libre"	
-	private: System::Void rB_libre_Click(System::Object^ sender, System::EventArgs^ e);
-		   //Selecciona la categoría "Venta receta"
-	private: System::Void rB_receta_Click(System::Object^ sender, System::EventArgs^ e);
-		   //Despliega el inventario del medicamento dado
-	private: System::Void dgv_medicamento_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e);
-		   //Muestra el panel para que el usuario ingrese el medicamento a buscar
-	private: System::Void btn_inventario_Click(System::Object^ sender, System::EventArgs^ e);
-		   //Cierra el panel para buscar medicamento por nombre
-	private: System::Void pl_inventario_btn_cerrar_Click(System::Object^ sender, System::EventArgs^ e);
-		   //Busca el inventario del medicamento a partir de su nombre y luego despliega el inventario
-	private: System::Void pl_inventario_btn_mostrar_Click(System::Object^ sender, System::EventArgs^ e);
-		   //Muestra el panel para buscar el medicamento a partir del nombre o principio activo
-	private: System::Void btn_buscar_Click(System::Object^ sender, System::EventArgs^ e);
-		   //Cierra el panel de busqueda
-	private: System::Void pl_buscar_btn_cerrar_Click(System::Object^ sender, System::EventArgs^ e);
-		   //Busca el medicamento a partir de su nombre
-	private: System::Void pl_buscar_btn_nombre_Click(System::Object^ sender, System::EventArgs^ e);
-		   //Busca el medicamento a partir de su principio activo
-	private: System::Void pl_buscar_btn_principio_Click(System::Object^ sender, System::EventArgs^ e);
-		   //Muestra el panel para crear un informe
-	private: System::Void btn_informe_Click(System::Object^ sender, System::EventArgs^ e);
-		   //Guarda los datos ingresados a un csv
-	private: System::Void pl_informe_btn_guardar_Click(System::Object^ sender, System::EventArgs^ e);
-		   //Cierra el panel del informe
-	private: System::Void pl_informe_btn_cerrar_Click(System::Object^ sender, System::EventArgs^ e);
-		   //Abre el form utilizado para mostrar los medicamentos con un filtro dado
-	private: System::Void btn_filtrar_Click(System::Object^ sender, System::EventArgs^ e);
-		   //Actualiza los datos del medicamento
-	private: System::Void btn_actualizar_Click(System::Object^ sender, System::EventArgs^ e);
-		   //Obtiene el promedio del precio de venta y de compra
-	private: System::Void btn_promedio_Click(System::Object^ sender, System::EventArgs^ e);
+		//Agrega el inventario de un medicamento
+		private: System::Void btn_agregar_Click(System::Object^ sender, System::EventArgs^ e);
+		//Muestra el panel de los proveedores
+		private: System::Void btn_proveedores_Click(System::Object^ sender, System::EventArgs^ e);
+		//Cierra el panel de los proveedores
+		private: System::Void btn_cerrar_Click(System::Object^ sender, System::EventArgs^ e);
+		//Selecciona la categoria "Venta libre"	
+		private: System::Void rB_libre_Click(System::Object^ sender, System::EventArgs^ e);
+		//Selecciona la categoría "Venta receta"
+		private: System::Void rB_receta_Click(System::Object^ sender, System::EventArgs^ e);
+		//Despliega el inventario del medicamento dado
+		private: System::Void dgv_medicamento_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e);
+		//Muestra el panel para que el usuario ingrese el medicamento a buscar
+		private: System::Void btn_inventario_Click(System::Object^ sender, System::EventArgs^ e);
+		//Cierra el panel para buscar medicamento por nombre
+		private: System::Void pl_inventario_btn_cerrar_Click(System::Object^ sender, System::EventArgs^ e);
+		//Busca el inventario del medicamento a partir de su nombre y luego despliega el inventario
+		private: System::Void pl_inventario_btn_mostrar_Click(System::Object^ sender, System::EventArgs^ e);
+		//Muestra el panel para buscar el medicamento a partir del nombre o principio activo
+		private: System::Void btn_buscar_Click(System::Object^ sender, System::EventArgs^ e);
+		//Cierra el panel de busqueda
+		private: System::Void pl_buscar_btn_cerrar_Click(System::Object^ sender, System::EventArgs^ e);
+		//Busca el medicamento a partir de su nombre
+		private: System::Void pl_buscar_btn_nombre_Click(System::Object^ sender, System::EventArgs^ e);
+		//Busca el medicamento a partir de su principio activo
+		private: System::Void pl_buscar_btn_principio_Click(System::Object^ sender, System::EventArgs^ e);
+	   //Muestra el panel para crear un informe
+		private: System::Void btn_informe_Click(System::Object^ sender, System::EventArgs^ e);
+	   //Guarda los datos ingresados a un csv
+		private: System::Void pl_informe_btn_guardar_Click(System::Object^ sender, System::EventArgs^ e);
+		//Cierra el panel del informe
+		private: System::Void pl_informe_btn_cerrar_Click(System::Object^ sender, System::EventArgs^ e);
+	   //Abre el form utilizado para mostrar los medicamentos con un filtro dado
+		private: System::Void btn_filtrar_Click(System::Object^ sender, System::EventArgs^ e);
+	   //Actualiza los datos del medicamento
+		private: System::Void btn_actualizar_Click(System::Object^ sender, System::EventArgs^ e);
+		//Obtiene el promedio del precio de venta y de compra
+		private: System::Void btn_promedio_Click(System::Object^ sender, System::EventArgs^ e);
+		//Obtiene el precio más alto del medicamento que distribuye el proveedor
+		private: System::Void btn_precio_Click(System::Object^ sender, System::EventArgs^ e);
 #pragma endregion
 	};
 }

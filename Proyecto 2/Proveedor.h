@@ -10,6 +10,8 @@ private:
 	System::String^ teléfono;
 	System::String^ correo;
 	int id;
+	double maxCompra;
+	double maxVenta;
 	Lista<Medicamento^> listaMedicamentos;
 public:
 	Proveedor(System::String^ nombre, int Nit, System::String^ direcciónFiscal,
@@ -23,4 +25,7 @@ public:
 	int getId();
 	void agregarMedicamento(Medicamento^ medicamento);
 	void filtrarPorProveedor(System::Windows::Forms::DataGridView^ dgv);
+	void checkPrecios(double compra, double venta);
+	double getMaxCompra();
+	double getMaxVenta();
 };

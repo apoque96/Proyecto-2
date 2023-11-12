@@ -165,6 +165,8 @@ System::Void main::btn_agregar_Click(System::Object^ sender, System::EventArgs^ 
 			validarDouble(tB_dosis->Text),
 			tB_principio->Text
 		), System::Convert::ToInt16(dgv_proveedor->CurrentRow->Cells[6]->Value));
+		sistema->getProveedor(System::Convert::ToInt16(dgv_proveedor->CurrentRow->Cells[6]->Value))
+			->checkPrecios(inventario->getCompra(), inventario->getVenta());
 	}
 	catch (...)
 	{
@@ -191,7 +193,7 @@ System::Void main::rB_receta_Click(System::Object^ sender, System::EventArgs^ e)
 //Despliega los datos de inventario del medicamento seleccionado
 System::Void main::dgv_medicamento_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
 	desplegarInventario(
-		sistema->getInventario(dgv_medicamento->CurrentRow->Cells[0]->Value->ToString()));
+		sistema->getInventario(System::Convert::ToInt32(dgv_medicamento->CurrentRow->Cells[1]->Value)));
 }
 //Muestra el panel para que el usuario ingrese el medicamento a buscar
 System::Void main::btn_inventario_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -206,7 +208,7 @@ System::Void main::pl_inventario_btn_cerrar_Click(System::Object^ sender, System
 //Busca el inventario del medicamento a partir de su nombre y luego despliega el inventario
 System::Void main::pl_inventario_btn_mostrar_Click(System::Object^ sender, System::EventArgs^ e) {
 	try {
-		Inventario^ inventario = sistema->getInventario(pl_inventario_tB_nombre->Text);
+		Inventario^ inventario = sistema->getInventario(System::Convert::ToInt32(pl_inventario_tB_nombre->Text));
 		desplegarInventario(inventario);
 		pl_inventario->Visible = false;
 		pl_inventario_tB_nombre->Text = "";
@@ -230,7 +232,7 @@ System::Void main::pl_buscar_btn_cerrar_Click(System::Object^ sender, System::Ev
 System::Void main::pl_buscar_btn_nombre_Click(System::Object^ sender, System::EventArgs^ e) {
 	try
 	{
-		Inventario^ medicamento = sistema->getInventario(pl_buscar_tB_nombre->Text);
+		Inventario^ medicamento = sistema->getInventario(System::Convert::ToInt32(pl_buscar_tB_nombre->Text));
 		MessageBox::Show(
 			"Nombre: " + medicamento->getNombre() +
 			"\nNumero de registro: " + medicamento->getNumRegistro() +
@@ -299,7 +301,7 @@ System::Void main::btn_filtrar_Click(System::Object^ sender, System::EventArgs^ 
 
 void main::actualizar()
 {
-	Inventario^ medicamentos = sistema->getInventario(tB_nombre->Text);
+	Inventario^ medicamentos = sistema->getInventario(System::Convert::ToInt32(dgv_medicamento->CurrentRow->Cells[1]->Value));
 	if (!medicamentos) return;
 	medicamentos->setNombre(tB_nombre->Text);
 	medicamentos->setCaducidad(dT_caducidad->Value.ToString());
@@ -309,11 +311,22 @@ void main::actualizar()
 	medicamentos->setVenta(validarDouble(tB_venta->Text));
 	medicamentos->setPrincipiosActivos(tB_principio->Text);
 	medicamentos->setCategoría(categoría);
+	medicamentos->setProveedor(sistema->getProveedor(System::Convert::ToInt16(dgv_proveedor->CurrentRow->Cells[6]->Value)));
+	dgv_medicamento->CurrentRow->Cells[0]->Value = medicamentos->getNombre();
+	dgv_medicamento->CurrentRow->Cells[2]->Value = (medicamentos->getCategoría() == 0 ? "Venta libre" : "Venta receta");
+	dgv_medicamento->CurrentRow->Cells[3]->Value = medicamentos->getPrincipiosActivos();
+	dgv_medicamento->CurrentRow->Cells[4]->Value = medicamentos->getDosisMg();
 	desplegarInventario(medicamentos);
+	sistema->getProveedor(System::Convert::ToInt16(dgv_proveedor->CurrentRow->Cells[6]->Value))
+		->checkPrecios(medicamentos->getCompra(), medicamentos->getVenta());
 }
 
 //Actualiza los datos del medicamento
 System::Void main::btn_actualizar_Click(System::Object^ sender, System::EventArgs^ e) {
+	if (!dgv_medicamento->CurrentRow) {
+		MessageBox::Show("Error: Seleccione un medicamento a actualizar");
+		return;
+	}
 	actualizar();
 }
 
@@ -322,5 +335,17 @@ System::Void main::btn_promedio_Click(System::Object^ sender, System::EventArgs^
 	MessageBox::Show(
 		"Promedio de Venta: " + sistema->getPromV().ToString() +
 		"\nPromedio de Compra " + sistema->getPromC().ToString()
+	);
+}
+
+//Obtiene el precio más alto del medicamento que distribuye el proveedor
+System::Void main::btn_precio_Click(System::Object^ sender, System::EventArgs^ e) {
+	Proveedor^ proveedor = sistema->getProveedor(System::Convert::ToInt16(dgv_proveedor->CurrentRow->Cells[6]->Value));
+	double compra = proveedor->getMaxCompra();
+	double venta = proveedor->getMaxVenta();
+	MessageBox::Show(
+		"Precios más altos que distibuye la proveedora " + proveedor->getNombre() +
+		"\nPrecio de Compra " + compra +
+		"\nPrecio de Venta: " + venta
 	);
 }
