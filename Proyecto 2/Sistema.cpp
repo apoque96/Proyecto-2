@@ -44,8 +44,8 @@ Inventario^ Sistema::getInventario(int index) {
 	return listaInventario.GetNodeVal(listaInventario.Get(index));
 }
 
-Inventario^ Sistema::getInventario(System::String^ nombre) {
-	return listaInventario.GetNodeVal(listaInventario.GetMedicamento(nombre));
+Inventario^ Sistema::getInventarioId(int id) {
+	return listaInventario.GetNodeVal(listaInventario.GetMedicamento(id));
 }
 
 Inventario^ Sistema::getInventarioPrincipio(System::String^ principio) {

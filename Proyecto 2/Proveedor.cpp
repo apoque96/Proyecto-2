@@ -41,3 +41,16 @@ void Proveedor::agregarMedicamento(Medicamento^ medicamento) {
 void Proveedor::filtrarPorProveedor(System::Windows::Forms::DataGridView^ dgv) {
 	listaMedicamentos.filtrarPorProveedor(dgv);
 }
+
+void Proveedor::checkPrecios(double compra, double venta) {
+	if (maxCompra < compra) maxCompra = compra;
+	if (maxVenta < compra) maxVenta = venta;
+}
+
+double Proveedor::getMaxCompra() {
+	return maxCompra;
+}
+
+double Proveedor::getMaxVenta() {
+	return maxVenta;
+}

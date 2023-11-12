@@ -21,7 +21,7 @@ public:
 	Proveedor^ getProveedor(int index);
 	void añadirInventario(Inventario^ inventario);
 	Inventario^ getInventario(int index);
-	Inventario^ getInventario(System::String^ nombre);
+	Inventario^ getInventarioId(int id);
 	Inventario^ getInventarioPrincipio(System::String^ principio);
 	void añadirMedicamentoAProveedor(Medicamento^ medicamento, int index);
 	void generarInforme(std::string nombre);
