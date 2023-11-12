@@ -34,13 +34,13 @@ namespace CRUDFarmacia {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::DataGridView^ dgv_inventario;
+
 	protected:
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Stock;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Caducidad;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ column_Proveedor;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Compra;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Venta;
+
+
+
+
+
 	private: System::Windows::Forms::DataGridView^ dgv_medicamento;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ column_Medicamento;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ registro;
@@ -84,12 +84,6 @@ namespace CRUDFarmacia {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->dgv_inventario = (gcnew System::Windows::Forms::DataGridView());
-			this->Stock = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Caducidad = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->column_Proveedor = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Compra = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Venta = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->dgv_medicamento = (gcnew System::Windows::Forms::DataGridView());
 			this->column_Medicamento = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->registro = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
@@ -111,61 +105,10 @@ namespace CRUDFarmacia {
 			this->Teléfono = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Correo = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->id = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgv_inventario))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgv_medicamento))->BeginInit();
 			this->pl_proveedores->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgv_proveedor))->BeginInit();
 			this->SuspendLayout();
-			// 
-			// dgv_inventario
-			// 
-			this->dgv_inventario->AllowUserToAddRows = false;
-			this->dgv_inventario->AllowUserToDeleteRows = false;
-			this->dgv_inventario->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dgv_inventario->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(5) {
-				this->Stock,
-					this->Caducidad, this->column_Proveedor, this->Compra, this->Venta
-			});
-			this->dgv_inventario->Location = System::Drawing::Point(12, 324);
-			this->dgv_inventario->Name = L"dgv_inventario";
-			this->dgv_inventario->ReadOnly = true;
-			this->dgv_inventario->Size = System::Drawing::Size(956, 74);
-			this->dgv_inventario->TabIndex = 3;
-			// 
-			// Stock
-			// 
-			this->Stock->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-			this->Stock->HeaderText = L"Stock";
-			this->Stock->Name = L"Stock";
-			this->Stock->ReadOnly = true;
-			// 
-			// Caducidad
-			// 
-			this->Caducidad->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-			this->Caducidad->HeaderText = L"Fecha de caducidad";
-			this->Caducidad->Name = L"Caducidad";
-			this->Caducidad->ReadOnly = true;
-			// 
-			// column_Proveedor
-			// 
-			this->column_Proveedor->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-			this->column_Proveedor->HeaderText = L"Proveedor";
-			this->column_Proveedor->Name = L"column_Proveedor";
-			this->column_Proveedor->ReadOnly = true;
-			// 
-			// Compra
-			// 
-			this->Compra->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-			this->Compra->HeaderText = L"Precio de compra";
-			this->Compra->Name = L"Compra";
-			this->Compra->ReadOnly = true;
-			// 
-			// Venta
-			// 
-			this->Venta->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-			this->Venta->HeaderText = L"Precio de venta";
-			this->Venta->Name = L"Venta";
-			this->Venta->ReadOnly = true;
 			// 
 			// dgv_medicamento
 			// 
@@ -361,18 +304,16 @@ namespace CRUDFarmacia {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(986, 412);
+			this->ClientSize = System::Drawing::Size(986, 305);
 			this->Controls->Add(this->pl_proveedores);
 			this->Controls->Add(this->btn_filtrar_categoría);
 			this->Controls->Add(this->rB_receta);
 			this->Controls->Add(this->rB_libre);
 			this->Controls->Add(this->btn_filtrar_proveedores);
 			this->Controls->Add(this->btn_proveedores);
-			this->Controls->Add(this->dgv_inventario);
 			this->Controls->Add(this->dgv_medicamento);
 			this->Name = L"Filtrar";
 			this->Text = L"Filtrar";
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgv_inventario))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgv_medicamento))->EndInit();
 			this->pl_proveedores->ResumeLayout(false);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgv_proveedor))->EndInit();
